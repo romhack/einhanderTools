@@ -326,7 +326,7 @@ def compress_file(in_name, base, ptr_table_offset, block_start_offset, plain_chu
     (offsets, block_bytes) = pack_line_block (plain, int(plain_chunk_size, 16))
     packed_size = len (block_bytes)
     tail_len = int(target_size, 16) - packed_size
-    assert tail_len >= 0, f"Compressed block is larger, than block space by 0x{-tail_len:x} bytes, aborted!"
+    assert tail_len >= 0, f"Compressed block is larger, than block space by 0x{abs(tail_len):x}  bytes, aborted!"
     tail_bytes = bytes([0]*tail_len)
     
     out_file = open(out_name, 'rb')
